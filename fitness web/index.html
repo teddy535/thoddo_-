@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife - Home</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Start Your Fitness Journey</h1>
+            <p>Personalized Workout Plans & Nutrition Guides</p>
+            <button class="cta-button">Join Free Today</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <!-- Feature 1 -->
+            <div class="feature-card">
+                <h3>🏋️ Expert Workouts</h3>
+                <p>Professional trainer-designed programs with video guides and PDF downloads</p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-card">
+                <h3>🥗 Smart Nutrition</h3>
+                <p>Custom meal plans, calorie tracker, and grocery lists for all diets</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-card">
+                <h3>📈 Progress Tracking</h3>
+                <p>Monitor your weight, measurements, and achievements with detailed analytics</p>
+            </div>
+        </div>
+    </section>
+
+      <!-- Workouts & Programs Section -->
+      <section class="workouts-section">
+        <div class="section-header">
+            <h2>Explore Our Programs</h2>
+            <p>Choose from 100+ workout plans across different categories</p>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="strength">Strength Training</button>
+            <button class="filter-btn" data-filter="cardio">Cardio</button>
+            <button class="filter-btn" data-filter="hiit">HIIT</button>
+            <button class="filter-btn" data-filter="yoga">Yoga</button>
+        </div>
+
+        <div class="workouts-grid">
+            <!-- Workout Card 1 -->
+            <div class="workout-card" data-category="strength">
+                <div class="workout-image" style="background-image: url('https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a')"></div>
+                <div class="workout-content">
+                    <div class="workout-meta">
+                        <span class="workout-difficulty">Beginner</span>
+                        <span>45 mins</span>
+                    </div>
+                    <h3 class="workout-title">Full Body Strength Training</h3>
+                    <a href="#" class="workout-cta">Start Workout</a>
+                </div>
+            </div>
+
+            <!-- Workout Card 2 -->
+            <div class="workout-card" data-category="cardio">
+                <div class="workout-image" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b')"></div>
+                <div class="workout-content">
+                    <div class="workout-meta">
+                        <span class="workout-difficulty">Intermediate</span>
+                        <span>30 mins</span>
+                    </div>
+                    <h3 class="workout-title">Fat Burning Cardio</h3>
+                    <a href="#" class="workout-cta">Start Workout</a>
+                </div>
+            </div>
+
+            <!-- Add more workout cards following the same structure -->
+        </div>
+    </section>
+
+    <script>
+        // Simple Filter Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const workoutCards = document.querySelectorAll('.workout-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                workoutCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+      <!-- Nutrition & Diet Section -->
+      <section class="nutrition-section">
+        <div class="section-header">
+            <h2>Nutrition & Diet Plans</h2>
+            <p>Fuel your body with science-backed meal plans and tracking</p>
+        </div>
+
+        <!-- Meal Plans Grid -->
+        <div class="meal-plans">
+            <!-- Meal Plan 1 -->
+            <div class="meal-card">
+                <div class="meal-image" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352')"></div>
+                <div class="meal-content">
+                    <span class="meal-type">Weight Loss</span>
+                    <h3 class="meal-title">7-Day Calorie Deficit Plan</h3>
+                    <div class="meal-stats">
+                        <span>🔥 1500 kcal/day</span>
+                        <span>📅 7 Days</span>
+                    </div>
+                    <button class="primary-btn">View Plan</button>
+                </div>
+            </div>
+
+            <!-- Meal Plan 2 -->
+            <div class="meal-card">
+                <div class="meal-image" style="background-image: url('https://images.unsplash.com/photo-1547592180-85f173990554')"></div>
+                <div class="meal-content">
+                    <span class="meal-type">Muscle Gain</span>
+                    <h3 class="meal-title">High Protein Bulking Plan</h3>
+                    <div class="meal-stats">
+                        <span>🔥 2500 kcal/day</span>
+                        <span>📅 30 Days</span>
+                    </div>
+                    <button class="primary-btn">View Plan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calorie Calculator -->
+        <div class="calculator-section">
+            <h3>Daily Calorie Calculator</h3>
+            <form class="calculator-form" onsubmit="calculateCalories(event)">
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" id="age" required>
+                </div>
+                <div class="form-group">
+                    <label>Weight (kg)</label>
+                    <input type="number" id="weight" required>
+                </div>
+                <div class="form-group">
+                    <label>Height (cm)</label>
+                    <input type="number" id="height" required>
+                </div>
+                <div class="form-group">
+                    <label>Activity Level</label>
+                    <select id="activity" required>
+                        <option value="1.2">Sedentary</option>
+                        <option value="1.375">Light Exercise</option>
+                        <option value="1.55">Moderate Exercise</option>
+                        <option value="1.725">Active</option>
+                        <option value="1.9">Very Active</option>
+                    </select>
+                </div>
+                <button type="submit" class="primary-btn">Calculate</button>
+            </form>
+            <div class="calculator-result" id="result"></div>
+        </div>
+
+        <!-- Grocery List Section -->
+        <div class="grocery-section">
+            <h3>Weekly Grocery List</h3>
+            <p>Download your personalized shopping list based on your meal plan:</p>
+            <button class="primary-btn">Download PDF</button>
+        </div>
+    </section>
+
+    <script>
+        function calculateCalories(e) {
+            e.preventDefault();
+            
+            const age = document.getElementById('age').value;
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value;
+            const activity = document.getElementById('activity').value;
+
+            // Simple BMR calculation (Mifflin-St Jeor Equation)
+            const bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            const tdee = bmr * activity;
+
+            document.getElementById('result').innerHTML = `
+                Your Daily Maintenance Calories: <strong>${Math.round(tdee)} kcal</strong>
+            `;
+        }
+    </script>
+       <!-- Progress Tracking Section -->
+       <section class="progress-section">
+        <div class="dashboard">
+            <!-- Stats Sidebar -->
+            <div class="stats-sidebar">
+                <div class="stats-card">
+                    <h3>Current Weight</h3>
+                    <div class="stat-value">75.4 kg</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <p>Goal: 70 kg (-5.4 kg)</p>
+                </div>
+
+                <div class="stats-card">
+                    <h3>BMI</h3>
+                    <div class="stat-value">24.1</div>
+                    <p>Healthy Range: 18.5 - 24.9</p>
+                </div>
+
+                <div class="stats-card">
+                    <h3>Workout Streak</h3>
+                    <div class="stat-value">🔥 12</div>
+                    <p>Consecutive Days</p>
+                </div>
+            </div>
+
+            <!-- Main Chart -->
+            <div class="chart-container">
+                <h2>Weight Progress</h2>
+                <canvas id="progressChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Weight Tracking -->
+        <div class="weight-tracker">
+            <h3>Add Weight Entry</h3>
+            <form class="weight-form" onsubmit="addWeightEntry(event)">
+                <input type="date" class="weight-input" id="entryDate" required>
+                <input type="number" step="0.1" class="weight-input" 
+                       placeholder="Weight (kg)" required>
+                <button type="submit" class="primary-btn">Add Entry</button>
+            </form>
+
+            <h3>History</h3>
+            <ul class="history-list" id="weightHistory">
+                <li class="history-item">
+                    <span>2023-08-01</span>
+                    <span>76.2 kg</span>
+                </li>
+                <!-- More entries will be added dynamically -->
+            </ul>
+        </div>
+    </section>
+
+    <!-- Chart.js for Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Sample Chart
+        const ctx = document.getElementById('progressChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Weight (kg)',
+                    data: [80, 78, 76.5, 75.8, 75.2, 74.9],
+                    borderColor: '#FF6B6B',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+
+        // Weight Tracking Functionality
+        function addWeightEntry(e) {
+            e.preventDefault();
+            const date = e.target[0].value;
+            const weight = e.target[1].value;
+            
+            const entry = document.createElement('li');
+            entry.className = 'history-item';
+            entry.innerHTML = `
+                <span>${date}</span>
+                <span>${weight} kg</span>
+            `;
+            
+            document.getElementById('weightHistory').prepend(entry);
+            e.target.reset();
+        }
+    </script>
+     
+      <!-- Blog Section -->
+      <section class="blog-section">
+        <div class="section-header">
+            <h2>Fitness Blog & Articles</h2>
+            <p>Learn from expert articles and success stories</p>
+        </div>
+
+        <div class="blog-categories">
+            <button class="category-btn active">All</button>
+            <button class="category-btn">Fitness Tips</button>
+            <button class="category-btn">Nutrition</button>
+            <button class="category-btn">Success Stories</button>
+            <button class="category-btn">Workouts</button>
+        </div>
+
+        <div class="blog-grid">
+            <!-- Featured Article -->
+            <article class="article-card featured-article">
+                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b')">
+                    <span class="article-category">Featured</span>
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span>August 15, 2023</span>
+                        <span>8 min read</span>
+                    </div>
+                    <h3 class="article-title">10 Science-Backed Strategies for Sustainable Weight Loss</h3>
+                    <p class="article-excerpt">Discover proven methods to achieve your weight goals without extreme diets or unsustainable workout routines...</p>
+                    <a href="#" class="read-more">
+                        Read Article
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Regular Article 1 -->
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b')">
+                    <span class="article-category">Workouts</span>
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span>August 12, 2023</span>
+                        <span>5 min read</span>
+                    </div>
+                    <h3 class="article-title">Building Home Workout Routine: Equipment-Free Exercises</h3>
+                    <p class="article-excerpt">Learn how to create effective workouts using just your body weight...</p>
+                    <a href="#" class="read-more">
+                        Read Article
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Add more articles following the same structure -->
+        </div>
+    </section>
+     
+      <!-- Contact Section -->
+      <section class="contact-section">
+        <div class="contact-container">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <p>We're here to help you with any questions</p>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h3>Visit Us</h3>
+                        <p>123 Fitness Street<br>Colombo 05, Sri Lanka</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div>
+                        <h3>Call Us</h3>
+                        <p>+94 112 345 678<br>Mon-Fri: 9am - 5pm</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h3>Email Us</h3>
+                        <p>support@fitlife.lk<br>response within 24 hours</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <form class="contact-form">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Subject</label>
+                    <input type="text" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Message</label>
+                    <textarea class="form-input" required></textarea>
+                </div>
+
+                <button type="submit" class="primary-btn" style="width: 100%; padding: 15px;">
+                    Send Message
+                </button>
+            </form>
+        </div>
+
+        <!-- Live Chat Button -->
+        <div class="live-chat">
+            <i class="fas fa-comment-dots"></i>
+            <span>Live Chat</span>
+        </div>
+    </section>
+
+</body>
+</html>
